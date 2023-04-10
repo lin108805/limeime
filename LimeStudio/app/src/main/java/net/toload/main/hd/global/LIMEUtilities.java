@@ -372,7 +372,8 @@ public class LIMEUtilities {
 //				return "com.google.android.googlequicksearchbox/com.google.android.voicesearch.ime.VoiceInputMethodService";
 //			}
 			if (id.equals("com.google.android.voicesearch/.ime.VoiceInputMethodService") ||
-			id.equals("com.google.android.tts/com.google.android.apps.speech.tts.googletts.settings.asr.voiceime.VoiceInputMethodService"))
+			id.equals("com.google.android.tts/com.google.android.apps.speech.tts.googletts.settings.asr.voiceime.VoiceInputMethodService") ||
+			id.equals("com.google.android.googlequicksearchbox/com.google.android.voicesearch.ime.VoiceInputMethodService"))
 			{
 				return id;
 			}
