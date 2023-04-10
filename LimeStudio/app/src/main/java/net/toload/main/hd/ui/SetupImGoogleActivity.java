@@ -154,8 +154,9 @@ public class SetupImGoogleActivity extends Activity implements
                     for(int i=0 ; i < count ; i++){
                         Metadata m = result.getMetadataBuffer().get(i);
                         if(!m.isTrashed()){
-                            DriveFile drivefile = Drive.DriveApi.getFile(mGoogleApiClient, m.getDriveId());
-                            drivefile.trash(mGoogleApiClient).setResultCallback(null);
+                            //TODO: DriveApi
+//                            DriveFile drivefile = Drive.DriveApi.getFile(mGoogleApiClient, m.getDriveId());
+//                            drivefile.trash(mGoogleApiClient).setResultCallback(null);
                         }
                     }
                     result.getMetadataBuffer().release();
@@ -254,48 +255,48 @@ public class SetupImGoogleActivity extends Activity implements
                                 @Override
                                 public void run() {
 
-                                    DriveFile drivefile = Drive.DriveApi.getFile(mGoogleApiClient, m.getDriveId());
-                                    DriveApi.DriveContentsResult driveContentsResult =
-                                            drivefile.open(mGoogleApiClient, DriveFile.MODE_READ_ONLY, null).await();
+//                                    DriveFile drivefile = Drive.DriveApi.getFile(mGoogleApiClient, m.getDriveId());
+//                                    DriveApi.DriveContentsResult driveContentsResult =
+//                                            drivefile.open(mGoogleApiClient, DriveFile.MODE_READ_ONLY, null).await();
 
-                                    DriveContents driveContents = driveContentsResult.getDriveContents();
+//                                    DriveContents driveContents = driveContentsResult.getDriveContents();
 
-                                    long total = m.getFileSize();
-                                    long downloadsize = 0;
-
-                                    try {
-                                        File tempdir = new File(LIME.LIME_SDCARD_FOLDER + File.separator);
-                                        if(!tempdir.exists()){
-                                            tempdir.mkdirs();
-                                        }
-                                        File tempfile = new File(LIME.LIME_SDCARD_FOLDER + File.separator + LIME.DATABASE_CLOUD_TEMP);
-                                        InputStream fi = driveContents.getInputStream();
-                                        FileOutputStream fo = null;
-
-                                        fo = new FileOutputStream(tempfile);
-                                        int bytesRead;
-                                        byte[] buffer = new byte[8 * 1024];
-
-                                        if (fi != null) {
-                                            while ((bytesRead = fi.read(buffer)) != -1) {
-                                                fo.write(buffer, 0, bytesRead);
-                                                downloadsize += buffer.length;
-
-                                                float percent = (float)downloadsize / (float)total;
-                                                percent = percent * 100;
-                                                handler.update((int)percent);
-                                            }
-                                        }
-                                        DBServer.restoreDatabase(tempfile.getAbsolutePath());
-
-                                        fo.close();
-
-                                        driveContents.discard(mGoogleApiClient);
-                                        result.getMetadataBuffer().release();
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                    finish();
+//                                    long total = m.getFileSize();
+//                                    long downloadsize = 0;
+//
+//                                    try {
+//                                        File tempdir = new File(LIME.LIME_SDCARD_FOLDER + File.separator);
+//                                        if(!tempdir.exists()){
+//                                            tempdir.mkdirs();
+//                                        }
+//                                        File tempfile = new File(LIME.LIME_SDCARD_FOLDER + File.separator + LIME.DATABASE_CLOUD_TEMP);
+//                                        InputStream fi = driveContents.getInputStream();
+//                                        FileOutputStream fo = null;
+//
+//                                        fo = new FileOutputStream(tempfile);
+//                                        int bytesRead;
+//                                        byte[] buffer = new byte[8 * 1024];
+//
+//                                        if (fi != null) {
+//                                            while ((bytesRead = fi.read(buffer)) != -1) {
+//                                                fo.write(buffer, 0, bytesRead);
+//                                                downloadsize += buffer.length;
+//
+//                                                float percent = (float)downloadsize / (float)total;
+//                                                percent = percent * 100;
+//                                                handler.update((int)percent);
+//                                            }
+//                                        }
+//                                        DBServer.restoreDatabase(tempfile.getAbsolutePath());
+//
+//                                        fo.close();
+//
+//                                        driveContents.discard(mGoogleApiClient);
+//                                        result.getMetadataBuffer().release();
+//                                    } catch (Exception e) {
+//                                        e.printStackTrace();
+//                                    }
+//                                    finish();
                                 }
                             }.start();
                         }
