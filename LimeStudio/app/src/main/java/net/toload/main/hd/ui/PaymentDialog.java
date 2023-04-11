@@ -165,7 +165,7 @@ public class PaymentDialog extends DialogFragment {
 			}
 		});
 
-		boolean buycheck = mLIMEPref.getParameterBoolean(Lime.PAYMENT_FLAG);
+		boolean buycheck = mLIMEPref.getParameterBoolean(Lime.PAYMENT_FLAG,true);
 		if(buycheck){
 			txtPaymentSuccess.setVisibility(View.VISIBLE);
 			btnPaymentPlan1.setVisibility(View.GONE);

@@ -313,7 +313,7 @@ public class ManageImFragment extends Fragment {
         searchword(null);
 
         // Handle AD Display
-        boolean paymentflag = mLIMEPref.getParameterBoolean(Lime.PAYMENT_FLAG, false);
+        boolean paymentflag = mLIMEPref.getParameterBoolean(Lime.PAYMENT_FLAG, true);
         if(!paymentflag) {
             /* Vpon
             adBannerLayout = (RelativeLayout) root.findViewById(R.id.adLayout);

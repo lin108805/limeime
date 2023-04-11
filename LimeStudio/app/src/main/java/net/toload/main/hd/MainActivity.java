@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity
                                        IBinder service) {
             mService = IInAppBillingService.Stub.asInterface(service);
 
-            boolean paymentFlag = mLIMEPref.getParameterBoolean(Lime.PAYMENT_FLAG, false);
+            boolean paymentFlag = mLIMEPref.getParameterBoolean(Lime.PAYMENT_FLAG, true);
             if (!paymentFlag) {
                 try {
                     Bundle ownedItems = mService.getPurchases(3, getPackageName(), "inapp", null);
@@ -285,7 +285,7 @@ public class MainActivity extends AppCompatActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-        boolean paymentflag = mLIMEPref.getParameterBoolean(Lime.PAYMENT_FLAG, false);
+        boolean paymentflag = mLIMEPref.getParameterBoolean(Lime.PAYMENT_FLAG, true);
         if (!paymentflag) {
             purchaseVerification();
         }
